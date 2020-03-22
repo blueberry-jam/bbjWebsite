@@ -2,4 +2,4 @@
 
 the official blueberry jam website
 
-maintained by: @greerpage
+maintained by: <a href="https://github.com/greerpage">@greerpage</a>
