@@ -1,0 +1,65 @@
+html body {
+    padding: 0;
+    margin: 0;
+}
+h1 {
+    padding: 0;
+    margin: 0;
+}
+.home-main{
+    height: 100vh;
+    width: 100%;
+    background-color: white;
+}
+.home-container{
+    position: relative;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 35%;
+    width: 50%;
+    background-color: rgb(206, 206, 206);
+    border-radius: 20px;
+    font-size: 30px;
+    color: #282654;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.home-container h1 {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+.home-container img {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 70px;
+    float: left;
+}
+.home-container p {
+    padding-top: 20px;
+    padding-left: 100px;
+}
+.error {
+    color: #282654;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Source Sans Pro', sans-serif;
+   
+}
+@media screen and (max-width: 976px) {
+    .home-container{
+        top: 15%;
+        min-height: 250px;
+        width: 100%;
+        border-radius: 0px;
+    }
+}
+@media screen and (max-width: 490px) {
+    .home-container{
+        font-size: 20px;
+    }
+}

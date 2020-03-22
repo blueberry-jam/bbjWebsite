@@ -1,0 +1,13 @@
+{% extends 'head.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>{{error}}</title> 
+{% endblock %}
+
+{% block body %}
+    <div class='home-main'>
+        <p class="error">{{errornum}} | {{error}}</p>
+    </div>
+{% endblock %}

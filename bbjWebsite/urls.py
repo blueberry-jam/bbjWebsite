@@ -16,8 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from homepage import views as viewshome
+from . import views as rootviews
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('', viewshome.index)
 ]
+
+handler404 = rootviews.error_404
+handler500 = rootviews.error_500
+handler403 = rootviews.error_403
+handler400 = rootviews.error_400
