@@ -20,7 +20,8 @@ from . import views as rootviews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', viewshome.index)
+    path('', viewshome.index),
+    #path('', rootviews.error_500)
 ]
 
 handler404 = rootviews.error_404

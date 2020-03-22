@@ -13,7 +13,7 @@ h1 {
 }
 .home-container{
     position: relative;
-    top: 35%;
+    top: 25%;
     left: 50%;
     transform: translateX(-50%);
     height: 35%;
@@ -39,16 +39,38 @@ h1 {
     padding-top: 20px;
     padding-left: 100px;
 }
+.home-container a {
+    text-decoration: none;
+    color: #282654;
+}
 .error {
     color: #282654;
     position: absolute;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     text-align: center;
     font-size: 30px;
     font-family: 'Source Sans Pro', sans-serif;
    
+}
+.navbar {
+    height: 80px;
+    width: 100%;
+    background-color: white;
+    border-bottom: solid 1px #b3b3b3b3;
+    position: absolute;
+    top: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.navbar a {
+    padding-left: 5%;
+    font-size: 30px;
+    text-decoration: none;
+    color: #282654;
+}
+.navbar div {
+    padding: 20px;
 }
 @media screen and (max-width: 976px) {
     .home-container{
@@ -61,5 +83,12 @@ h1 {
 @media screen and (max-width: 490px) {
     .home-container{
         font-size: 20px;
+    }
+    .navbar {
+        border-top: solid 1px #b3b3b3b3;
+        position: fixed;
+        top: 100%;
+        z-index: 100;
+        transform: translateY(-60px);
     }
 }
