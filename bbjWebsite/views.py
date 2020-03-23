@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
+from django.urls import resolve
 
 def error_404(request, exception):
     data = {
@@ -30,3 +31,8 @@ def error_403(request, exception):
         'nav': True,
     }
     return render(request,'error.html', data)
+
+def noSlash(request):
+    current_url = request.path
+    c = str(current_url).replace('/', '')
+    return redirect('/' + c)

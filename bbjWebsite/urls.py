@@ -18,12 +18,15 @@ from django.urls import path
 from homepage import views as viewshome
 from . import views as rootviews
 from about import views as about
+from software import views as software
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', viewshome.index),
     path('about', about.index),
-    path('about/', about.index),
+    path('about/', rootviews.noSlash),
+    path('software', software.index),
+    path('software/', rootviews.noSlash)
     #path('', rootviews.error_500)
 ]
 
