@@ -13,13 +13,15 @@
     {% block head %}{% endblock %}
 </head>
 <body>
-    <div class="navbar">
-        <div>
-            <a href="/">home</a>
-            <a href="/about">about</a>
-            <a href="/software">software</a>
+    {% if nav == True %}
+        <div class="navbar">
+            <div>
+                <a href="/">home</a>
+                <a href="/about">about</a>
+                <a href="/software">software</a>
+            </div>
         </div>
-    </div>
+    {% endif %}
     {% block body %}{% endblock %}
 </body>
 </html>

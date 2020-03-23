@@ -17,10 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from homepage import views as viewshome
 from . import views as rootviews
+from about import views as about
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
     path('', viewshome.index),
+    path('about', about.index),
+    path('about/', about.index),
     #path('', rootviews.error_500)
 ]
 
