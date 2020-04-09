@@ -17,11 +17,14 @@ def index(request):
     file = os.path.join(path, 'json', 'blog.json')
     with open(file, 'r') as e:
         data = json.load(e)
-    
+    order = reversed([key for key in data])
+    posts = {}
+    for key in order:
+        posts[key] = data[key]
     context = {
         'nav': True,
         'canpost': add,
-        'posts': data,
+        'posts': posts,
     }
     return render(request, 'blog.html', context)
 
@@ -61,9 +64,35 @@ def new(request):
     }
     return render(request, 'new.html', context)
 
+def view_post(request, name):
+    username = request.COOKIES.get('username')
+    add = False
+    if username != None:
+        add = True
+    checkjson()
+    file = os.path.join(path, 'json', 'blog.json')
+    with open(file, 'r') as e:
+        data = json.load(e)
+    if name not in data:
+        raise Http404()
+    data = data[name]
+    context = {
+        'nav': True,
+        'data': data,
+        'name': name,
+    }
+    return render(request, 'post.html', context)
+
+
 def checkjson():
     if 'json' not in os.listdir(path):
         os.mkdir(os.path.join(path, 'json'))
     if 'blog.json' not in os.listdir(os.path.join(path, 'json')):
         with open(os.path.join(path, 'json', 'blog.json'), 'w') as e:
             json.dump({}, e)
+    else:
+        e = open(os.path.join(path, 'json', 'blog.json'), 'r').read()
+        if e == '':
+            with open(os.path.join(path, 'json', 'blog.json'), 'w') as e:
+                json.dump({}, e)
+        

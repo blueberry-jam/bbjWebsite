@@ -5,7 +5,6 @@ $(document).ready(function() {
         var body = $.trim($('#blog-body-textarea').val());
         var sub = true;
         if(title != '') {
-            console.log(title)
             $('#id_title').val(title);
             if($('#e1').css('display') === 'block') {
                 $('#e1').css('display', 'none');
@@ -17,7 +16,6 @@ $(document).ready(function() {
             var sub = false;
         }
         if(desc != '') {
-            console.log(desc)
             $('#id_description').val(desc);
             if($('#e2').css('display') === 'block') {
                 $('#e2').css('display', 'none');
@@ -29,7 +27,6 @@ $(document).ready(function() {
             var sub = false;
         }
         if(body != '') {
-            console.log(body)
             $('#id_body').val(body);
             if($('#e3').css('display') === 'block') {
                 $('#e3').css('display', 'none');

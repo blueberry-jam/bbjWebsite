@@ -1,0 +1,19 @@
+{% extends 'head.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>{{name}}</title> 
+{% endblock %}
+
+{% block body %}
+    <div class='main'>
+        <div class='post-main'>   
+            <h1>{{name}}</h1>  
+            <sub style="color: #282654">{{data.1}}</sub>
+            <div class = 'post-body'>
+                {{data.0 | safe}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
