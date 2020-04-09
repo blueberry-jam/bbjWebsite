@@ -10,6 +10,7 @@ path = settings.BASE_DIR
 # Create your views here.
 def index(request):
     username = request.COOKIES.get('username')
+    add = False
     if username != None:
         add = True
     context = {
