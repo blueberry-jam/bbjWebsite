@@ -13,9 +13,15 @@ def index(request):
     add = False
     if username != None:
         add = True
+    checkjson()
+    file = os.path.join(path, 'json', 'blog.json')
+    with open(file, 'r') as e:
+        data = json.load(e)
+    
     context = {
         'nav': True,
         'canpost': add,
+        'posts': data,
     }
     return render(request, 'blog.html', context)
 
@@ -29,22 +35,23 @@ def new(request):
             body = form.cleaned_data['body']
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
-            description, body = markdown(description), markdown(body)
+            body = markdown(body)
             checkjson()
             file = os.path.join(path, 'json', 'blog.json')
-            with open(file, 'r') as f:
-                if f.read() == '':
-                    data = {title: [body, description]}
-                    with open(file, 'w') as e:
-                        json.dump(data, e)
-                else:
-                    with open(file, 'r') as e:
-                        data = json.load(e)
-                    if title in data:
-                        title = title + ' [1]'
-                    data[title] = [body, description]
-                    with open(file, 'w') as e:
-                        json.dump(data, e)
+            with open(file, 'r') as e:
+                data = json.load(e)
+            if title in data:
+                title = title + ' [1]'
+            link = title.split()
+            if len(link) > 1:
+                link = [link+'+' for link in link]
+                link = ''.join(link)
+                link = link[:-1]
+            else:
+                link = title
+            data[title] = [body, description, link]
+            with open(file, 'w') as e:
+                json.dump(data, e)
             return redirect('/blog')
     else:
         form = blogForm()
@@ -58,4 +65,5 @@ def checkjson():
     if 'json' not in os.listdir(path):
         os.mkdir(os.path.join(path, 'json'))
     if 'blog.json' not in os.listdir(os.path.join(path, 'json')):
-        open(os.path.join(path, 'json', 'blog.json'), 'w+')
+        with open(os.path.join(path, 'json', 'blog.json'), 'w') as e:
+            json.dump({}, e)

@@ -4,15 +4,24 @@
 
 {% block head %}
     <title>blog</title> 
+    <script src="{% static 'js/blog-link.js' %}"></script>
 {% endblock %}
 
 {% block body %}
     <div class='main'>
         <div class='blog-main'>
-            <h1>blog posts</h1>
+            <h1>blog</h1>
             {% if canpost == True %}
-                <a href="/blog/new" class="post-button">+ add post</a>
+                <a href="/new/blog" class="post-button"><span>+</span><span class="button-extra">add post</span></a>
             {% endif %}
+            <div class="posts-container" >
+                {% for key, values in posts.items %}
+                    <div class="post-container" id="{{values.2}}">
+                        <a id="{{values.2}}" href="blog/{{values.2}}">{{key}}</a>
+                        <p id="{{values.2}}">{{values.1}}</p>
+                    </div>  
+                {% endfor %}
+            </div>        
         </div>
     </div>
 {% endblock %}

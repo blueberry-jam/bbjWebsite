@@ -9,7 +9,7 @@
 {% block body %}
     <div class='main' style="text-align: center;">
         {% if mode == 'login' %}
-            <a href="https://github.com/login/oauth/authorize?client_id=3c5c8fbf483a4d3ac694" class="login">login with github</a>
+            <a href="https://github.com/login/oauth/authorize?client_id={{id}}" class="login">login with github</a>
         {% else %}
             <p style="margin-top: 200px; font-size: 20px;">successfully logged out</p>
         {% endif %}
