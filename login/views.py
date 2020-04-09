@@ -25,12 +25,12 @@ def index(request):
         return response
 
 def loggedIn(request):
+    global secret
     if request.META['HTTP_HOST'] == 'localhost:8000':
         c_id = client_id_local
         secret = secret_local
     else:
         c_id = client_id
-        secret = secret
     code = request.GET.get('code')
     response = requests.post('https://github.com/login/oauth/access_token', data = {
         'client_id': c_id,
