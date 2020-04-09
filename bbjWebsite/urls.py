@@ -32,7 +32,8 @@ urlpatterns = [
     path('logged-in', login.loggedIn),
     path('new/blog', blog.new),
     path('logout', login.index),
-    path('blog/<str:name>', blog.view_post)
+    path('blog/<str:name>', blog.view_post),
+    path('blog/edit/<str:name>', blog.edit),
 ]
 
 handler404 = rootviews.error_404

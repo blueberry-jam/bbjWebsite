@@ -14,7 +14,7 @@
             <sub style="color: #282654">{{data.1}}</sub>
             {% if add == True %}
                 <a class="post-button" id="delete-button"><img src="{% static 'images/trash.png' %}" alt="delete"></a>
-                <a href="#" class="post-button"><img src="{% static 'images/pencil.png' %}" alt="edit"></a>
+                <a href="edit/{{link}}" class="post-button"><img src="{% static 'images/pencil.png' %}" alt="edit"></a>
                 <form method = "post" enctype="multipart/form-data" id="form"> 
                     {% csrf_token %} 
                     <div style="display: none;">
