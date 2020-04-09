@@ -76,6 +76,7 @@ def view_post(request, name):
     file = os.path.join(path, 'json', 'blog.json')
     with open(file, 'r') as e:
         data = json.load(e)
+    name = name.replace('+', ' ')
     if name not in data:
         raise Http404()
     data = data[name]
