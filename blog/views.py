@@ -1,5 +1,5 @@
 from django.shortcuts import render, Http404, redirect
-from .forms import blogForm
+from .forms import blogForm, deleteForm
 import os
 from bbjWebsite import settings
 import json
@@ -72,18 +72,31 @@ def view_post(request, name):
     add = False
     if username != None:
         add = True
-    checkjson()
+    checkjson() 
     file = os.path.join(path, 'json', 'blog.json')
     with open(file, 'r') as e:
         data = json.load(e)
     name = name.replace('+', ' ')
     if name not in data:
         raise Http404()
+    if request.method == 'POST': 
+        form = deleteForm(request.POST, request.FILES) 
+        if form.is_valid(): 
+            delete = form.cleaned_data['delete']
+            if delete == 'yes':
+                del data[name]
+                with open(file, 'w') as e:
+                    json.dump(data, e)
+        return redirect('/blog')
+    
+    form = deleteForm()
     data = data[name]
     context = {
         'nav': True,
         'data': data,
         'name': name,
+        'add': add,
+        'form': form,
     }
     return render(request, 'post.html', context)
 

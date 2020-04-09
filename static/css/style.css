@@ -140,6 +140,7 @@ p {
 }
 .post-container:hover {
     border: 2px solid #444141;
+    cursor: pointer;
 }
 .post-container a {
     color: #282654;
@@ -154,10 +155,17 @@ p {
     background-color: #282654; 
     text-decoration: none;
     border-radius: 10px;
+    border: 0;
     position: relative;
     top: -20px;
     left: 80%; 
     transform: translateX(-50%);
+}
+a:hover {
+    cursor: pointer;
+}
+.post-button img {
+    height: 20px;
 }
 .blog-post-inputs {
     width: 75%;

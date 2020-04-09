@@ -14,7 +14,7 @@
             {% if canpost == True %}
                 <a href="/new/blog" class="post-button"><span>+</span><span class="button-extra">add post</span></a>
             {% endif %}
-            <div class="posts-container" >
+            <div class="posts-container">
                 {% for key, values in posts.items %}
                     <div class="post-container" id="{{values.2}}">
                         <a id="{{values.2}}" href="blog/{{values.2}}">{{key}}</a>
