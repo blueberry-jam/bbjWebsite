@@ -3,11 +3,15 @@
 {% load static %}
 
 {% block head %}
-    <title>login</title> 
+    <title>{{mode}}</title> 
 {% endblock %}
 
 {% block body %}
     <div class='main' style="text-align: center;">
-        <a href="https://github.com/login/oauth/authorize?client_id=07384894dd8d111795f7" class="login">login with github</a>
+        {% if mode == 'login' %}
+            <a href="https://github.com/login/oauth/authorize?client_id=3c5c8fbf483a4d3ac694" class="login">login with github</a>
+        {% else %}
+            <p style="margin-top: 200px; font-size: 20px;">successfully logged out</p>
+        {% endif %}
     </div>
 {% endblock %}

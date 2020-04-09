@@ -10,6 +10,7 @@ path = settings.BASE_DIR
 # Create your views here.
 def index(request):
     username = request.COOKIES.get('username')
+    add = False
     if username != None:
         add = True
     context = {
@@ -21,14 +22,14 @@ def index(request):
 
 def new(request):
     if request.COOKIES.get('username') == None:
-        return Http404
+        raise Http404()
     if request.method == 'POST': 
         form = blogForm(request.POST, request.FILES) 
         if form.is_valid(): 
             body = form.cleaned_data['body']
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
-            title, description, body = markdown(title), markdown(description), markdown(body)
+            description, body = markdown(description), markdown(body)
             checkjson()
             file = os.path.join(path, 'json', 'blog.json')
             with open(file, 'r') as f:

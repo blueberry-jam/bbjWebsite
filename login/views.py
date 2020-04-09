@@ -8,8 +8,17 @@ import datetime
 
 path = settings.BASE_DIR
 
-def index(request):
-    return render(request, 'login.html')
+def index(request):    
+    if request.path == '/login':
+        mode = 'login'
+        context = {'mode': mode}
+        return render(request, 'login.html', context)
+    if request.path == '/logout':
+        mode = 'logout'    
+        context = {'mode': mode}
+        response = render(request, 'login.html', context)
+        response.delete_cookie('username')
+        return response
 
 def loggedIn(request):
     code = request.GET.get('code')
