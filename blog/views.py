@@ -4,6 +4,7 @@ import os
 from bbjWebsite import settings
 import json
 from markdown import markdown
+import datetime
 
 path = settings.BASE_DIR
 
@@ -52,7 +53,9 @@ def new(request):
                 link = link[:-1]
             else:
                 link = title
-            data[title] = [body, description, link]
+            today = datetime.date.today()
+            date = today.strftime("%m/%d/%y")
+            data[title] = [body, description, link, date]
             with open(file, 'w') as e:
                 json.dump(data, e)
             return redirect('/blog')
