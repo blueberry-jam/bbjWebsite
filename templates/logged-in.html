@@ -1,0 +1,13 @@
+{% extends 'head.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>logged in</title> 
+{% endblock %}
+
+{% block body %}
+    <div class='main' style="text-align: center;">
+        <p style="position: relative; top: 25%; font-size: 30px;">successfully logged in as: {{username}}</p>
+    </div>
+{% endblock %}

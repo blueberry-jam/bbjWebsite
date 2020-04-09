@@ -18,16 +18,19 @@ from django.urls import path
 from homepage import views as viewshome
 from . import views as rootviews
 from about import views as about
-from software import views as software
+from login import views as login
+from blog import views as blog
 
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('', viewshome.index),
     path('about', about.index),
     path('about/', rootviews.noSlash),
-    path('software', software.index),
-    path('software/', rootviews.noSlash)
-    #path('', rootviews.error_500)
+    path('blog', blog.index),
+    path('blog/', rootviews.noSlash),
+    path('login', login.index),
+    path('logged-in', login.loggedIn),
+    path('blog/new', blog.new)
 ]
 
 handler404 = rootviews.error_404

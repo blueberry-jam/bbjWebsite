@@ -1,0 +1,18 @@
+{% extends 'head.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>blog</title> 
+{% endblock %}
+
+{% block body %}
+    <div class='main'>
+        <div class='blog-main'>
+            <h1>blog posts</h1>
+            {% if canpost == True %}
+                <a href="/blog/new" class="post-button">+ add post</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

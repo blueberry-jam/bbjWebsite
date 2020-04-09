@@ -1,0 +1,38 @@
+{% extends 'head.html' %}
+
+{% load static %}
+
+{% block head %}
+    <title>new post</title>   
+    <script src="{% static 'js/post.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class='main'>
+        <div class='blog-main'>
+            <h1 style="margin-bottom: 20px;">new post</h1>
+            <form method = "post" enctype="multipart/form-data" id="form"> 
+                {% csrf_token %} 
+                <div style="display: none;">
+                    {{form}}
+                </div>
+                
+                <button type="submit" class="post-button" id='post-button-submit' style="display: none;"></button>
+            </form> 
+            <div class='blog-post-inputs'>
+                <p>title:</p>
+                <input type="text" name="title" id="blog-title-input">
+                <p class='hidden-error' id='e1'>this is required</p>
+                <p>description:</p>
+                <textarea name="blog-desc" id="blog-desc-textarea" ></textarea>
+                <p class='hidden-error' id="e2">this is required</p>
+                <p>post:</p>
+                <textarea name="blog-body" id="blog-body-textarea" ></textarea>
+                <p class='hidden-error'id="e3">this is required</p>
+                <button id="post-button">post</button>
+                <div style="height: 14vh; width:100%"></div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}
