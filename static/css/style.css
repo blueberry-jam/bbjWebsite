@@ -253,6 +253,7 @@ button:hover {
 .post-body code {
     border-radius: 5px;
     background-color: #e0e0e0;
+    font-family: hack;
 }
 @media screen and (max-width: 976px) {
     .home-container{
