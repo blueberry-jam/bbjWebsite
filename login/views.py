@@ -46,7 +46,7 @@ def loggedIn(request):
         context['username'] = username
         response = render(request, 'logged-in.html', context)
         if username not in ['jamckson', 'GreerPage', 'tteeoo']:
-            return Http404()
+            raise Http404()
         response.set_cookie('username', username)
         return response
     else:
