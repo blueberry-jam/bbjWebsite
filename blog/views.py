@@ -153,7 +153,7 @@ def edit(request, name):
                 data[title] = [mdbody, description, link, date, body]
                 with open(file, 'w') as e:
                     json.dump(data, e)
-            return redirect('/blog')
+            return redirect('/blog/{}'.format(link))
     else:
         form = blogForm()
     context = {
