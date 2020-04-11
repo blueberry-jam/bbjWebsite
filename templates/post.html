@@ -9,12 +9,10 @@
 
 {% block body %}
     <div class='main'>
-        <div class='post-main'>   
-            <h1>{{name}}</h1>  
-            <sub style="color: #282654">{{data.1}}</sub>
-            {% if add == True %}
-                <a class="post-button" id="delete-button"><img src="{% static 'images/trash.png' %}" alt="delete"></a>
-                <a href="edit/{{link}}" class="post-button"><img src="{% static 'images/pencil.png' %}" alt="edit"></a>
+        {% if add == True %}
+            <div class='edit-delete'>
+                <a class="edit-button" id="delete-button"><img src="{% static 'images/trash.png' %}" alt="delete"></a>
+                <a href="edit/{{link}}" class="edit-button"><img src="{% static 'images/pencil.png' %}" alt="edit"></a>
                 <form method = "post" enctype="multipart/form-data" id="form"> 
                     {% csrf_token %} 
                     <div style="display: none;">
@@ -22,7 +20,11 @@
                     </div>  
                     <button type="submit" class="post-button" id='post-button-submit' style="display: none;"></button>
                 </form> 
-            {% endif %}
+            </div>
+        {% endif %}
+        <div class='post-main'>   
+            <h1>{{name}}</h1>  
+            <sub style="color: #282654">{{data.1}}</sub>
             <div class = 'post-body'>
                 {{data.0 | safe}}
             </div>
