@@ -14,7 +14,7 @@ def index(request):
     file = os.path.join(settings.BASE_DIR, 'json', 'user_ids.json')
     checkjson('user_ids.json')
     with open(file, 'r') as f:
-            data = json.load(f)
+        data = json.load(f)
     add = False
     if user_id in data:
         add = True
@@ -39,7 +39,7 @@ def new(request):
     file = os.path.join(settings.BASE_DIR, 'json', 'user_ids.json')
     checkjson('user_ids.json')
     with open(file, 'r') as f:
-            data = json.load(f)
+        data = json.load(f)
     if user_id not in data:
         raise Http404()
     if request.method == 'POST': 
@@ -134,7 +134,12 @@ def checkjson(name):
                 json.dump({}, e)
 
 def edit(request, name):
-    if request.COOKIES.get('username') == None:
+    user_id = request.COOKIES.get('user_id')
+    file = os.path.join(settings.BASE_DIR, 'json', 'user_ids.json')
+    checkjson('user_ids.json')
+    with open(file, 'r') as f:
+        data = json.load(f)
+    if user_id not in data:
         raise Http404()
     link = name
     name = name.replace('+', ' ')
