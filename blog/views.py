@@ -10,11 +10,15 @@ path = settings.BASE_DIR
 
 # Create your views here.
 def index(request):
-    username = request.COOKIES.get('username')
+    user_id = request.COOKIES.get('user_id')
+    file = os.path.join(settings.BASE_DIR, 'json', 'user_ids.json')
+    checkjson('user_ids.json')
+    with open(file, 'r') as f:
+            data = json.load(f)
     add = False
-    if username != None:
+    if user_id in data:
         add = True
-    checkjson()
+    checkjson('blog.json')
     file = os.path.join(path, 'json', 'blog.json')
     with open(file, 'r') as e:
         data = json.load(e)
@@ -31,7 +35,12 @@ def index(request):
 
 
 def new(request):
-    if request.COOKIES.get('username') == None:
+    user_id = request.COOKIES.get('user_id')
+    file = os.path.join(settings.BASE_DIR, 'json', 'user_ids.json')
+    checkjson('user_ids.json')
+    with open(file, 'r') as f:
+            data = json.load(f)
+    if user_id not in data:
         raise Http404()
     if request.method == 'POST': 
         form = blogForm(request.POST, request.FILES) 
@@ -40,7 +49,7 @@ def new(request):
             title = form.cleaned_data['title']
             description = form.cleaned_data['description']
             mdbody = markdown(body)
-            checkjson()
+            checkjson('blog.json')
             file = os.path.join(path, 'json', 'blog.json')
             with open(file, 'r') as e:
                 data = json.load(e)
@@ -72,12 +81,16 @@ def new(request):
     return render(request, 'new.html', context)
 
 def view_post(request, name):
-    username = request.COOKIES.get('username')
+    username = request.COOKIES.get('user_id')
     add = False
     link = name
-    if username != None:
+    file = os.path.join(settings.BASE_DIR, 'json', 'user_ids.json')
+    checkjson('user_ids.json')
+    with open(file, 'r') as f:
+            data = json.load(f)
+    if username in data:
         add = True
-    checkjson() 
+    checkjson('blog.json') 
     file = os.path.join(path, 'json', 'blog.json')
     with open(file, 'r') as e:
         data = json.load(e)
@@ -107,16 +120,17 @@ def view_post(request, name):
     return render(request, 'post.html', context)
 
 
-def checkjson():
+def checkjson(name):
     if 'json' not in os.listdir(path):
         os.mkdir(os.path.join(path, 'json'))
-    if 'blog.json' not in os.listdir(os.path.join(path, 'json')):
-        with open(os.path.join(path, 'json', 'blog.json'), 'w') as e:
+    if name not in os.listdir(os.path.join(path, 'json')):
+        with open(os.path.join(path, 'json', name), 'w') as e:
+            print(e)
             json.dump({}, e)
     else:
-        e = open(os.path.join(path, 'json', 'blog.json'), 'r').read()
+        e = open(os.path.join(path, 'json', name), 'r').read()
         if e == '':
-            with open(os.path.join(path, 'json', 'blog.json'), 'w') as e:
+            with open(os.path.join(path, 'json', name), 'w') as e:
                 json.dump({}, e)
 
 def edit(request, name):
@@ -127,7 +141,7 @@ def edit(request, name):
     file = os.path.join(path, 'json', 'blog.json')
     with open(file, 'r') as e:
         data = json.load(e)
-    checkjson()
+    checkjson('blog.json')
     if request.method == 'POST': 
         form = blogForm(request.POST, request.FILES) 
         if form.is_valid(): 

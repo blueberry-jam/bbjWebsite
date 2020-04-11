@@ -31,7 +31,7 @@ urlpatterns = [
     path('login', login.index),
     path('logged-in', login.loggedIn),
     path('new/blog', blog.new),
-    path('logout', login.index),
+    path('logout', login.logout),
     path('blog/<str:name>', blog.view_post),
     path('blog/edit/<str:name>', blog.edit),
 ]
